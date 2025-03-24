@@ -18,7 +18,7 @@ public abstract class BaseEntity {
 
     @Id // PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.PROTECTED)
     @EqualsAndHashCode.Include
     private Long id; // long -> null X, Long -> null O
 

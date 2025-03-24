@@ -39,23 +39,23 @@ public class Rq {
     public Member getActor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if(authentication == null) {
+        if (authentication == null) {
             throw new ServiceException("401-2", "로그인이 필요합니다.");
         }
 
         Object principal = authentication.getPrincipal();
 
-        if(!(principal instanceof SecurityUser)) {
+        if (!(principal instanceof SecurityUser)) {
             throw new ServiceException("401-3", "잘못된 인증 정보입니다");
         }
 
         SecurityUser user = (SecurityUser) principal;
 
-        return Member.builder()
-                .id(user.getId())
-                .username(user.getUsername())
-                .nickname(user.getNickname())
-                .build();
+        return new Member(
+                user.getId(),
+                user.getUsername(),
+                user.getNickname()
+        );
     }
 
     public String getHeader(String name) {
@@ -65,12 +65,12 @@ public class Rq {
     public String getValueFromCookie(String name) {
         Cookie[] cookies = request.getCookies();
 
-        if(cookies == null) {
+        if (cookies == null) {
             return null;
         }
 
-        for(Cookie cookie : cookies) {
-            if(cookie.getName().equals(name)) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(name)) {
                 return cookie.getValue();
             }
         }

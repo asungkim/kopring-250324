@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +21,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
 @EntityListeners(AuditingEntityListener.class)
 public class Member extends BaseTime {
 
@@ -35,6 +33,12 @@ public class Member extends BaseTime {
     @Column(length = 100)
     private String nickname;
     private String profileImgUrl;
+
+    public Member(long id, String username, String nickname) {
+        this.setId(id);
+        this.username = username;
+        this.nickname = nickname;
+    }
 
     public boolean isAdmin() {
         return username.equals("admin");
@@ -53,7 +57,7 @@ public class Member extends BaseTime {
 
         List<String> authorities = new ArrayList<>();
 
-        if(isAdmin()) {
+        if (isAdmin()) {
             authorities.add("ROLE_ADMIN");
         }
 
