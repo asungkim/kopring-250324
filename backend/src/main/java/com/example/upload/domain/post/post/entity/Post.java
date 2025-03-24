@@ -65,19 +65,19 @@ public class Post extends BaseTime {
         long fileSize = Ut.file.getFileSize(filePath);
         fileNo = fileNo == 0 ? getNextGenFileNo(typeCode) : fileNo;
 
-        PostGenFile genFile = PostGenFile.builder()
-                .post(this)
-                .typeCode(typeCode)
-                .fileNo(fileNo)
-                .originalFileName(originalFileName)
-                .metadata(metadataStr)
-                .fileDateDir(Ut.date.getCurrentDateFormatted("yyyy_MM_dd"))
-                .fileExtTypeCode(fileExtTypeCode)
-                .fileExtType2Code(fileExtType2Code)
-                .fileExt(fileExt)
-                .fileName(fileName)
-                .fileSize(fileSize)
-                .build();
+        PostGenFile genFile = new PostGenFile(
+                this,
+                typeCode,
+                fileNo,
+                originalFileName,
+                metadataStr,
+                Ut.date.getCurrentDateFormatted("yyyy_MM_dd"),
+                fileExtTypeCode,
+                fileExtType2Code,
+                fileExt,
+                fileName,
+                fileSize
+        );
 
         genFiles.add(genFile);
         Ut.file.mv(filePath, genFile.getFilePath());
