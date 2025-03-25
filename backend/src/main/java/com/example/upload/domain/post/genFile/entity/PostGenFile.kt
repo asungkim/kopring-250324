@@ -12,7 +12,7 @@ class PostGenFile : GenFile {
 
     @Enumerated(EnumType.STRING)
     lateinit var typeCode:
-    TypeCode
+            TypeCode
 
     enum class TypeCode {
         attachment,
@@ -20,27 +20,27 @@ class PostGenFile : GenFile {
     }
 
     constructor(
-            post: Post,
-            typeCode: TypeCode,
-            fileNo: Int,
-            originalFileName: String,
-            metadataStr: String,
-            yyyyMmDd: String,
-            fileExtTypeCode: String,
-            fileExtType2Code: String,
-            fileExt: String,
-            fileName: String,
-            fileSize: Long
+        post: Post,
+        typeCode: TypeCode,
+        fileNo: Int,
+        originalFileName: String,
+        metadataStr: String,
+        yyyyMmDd: String,
+        fileExtTypeCode: String,
+        fileExtType2Code: String,
+        fileExt: String,
+        fileName: String,
+        fileSize: Long
     ) : super(
-            fileNo,
-            originalFileName,
-            metadataStr,
-            yyyyMmDd,
-            fileExtTypeCode,
-            fileExtType2Code,
-            fileExt,
-            fileName,
-            fileSize
+        fileNo,
+        originalFileName,
+        metadataStr,
+        yyyyMmDd,
+        fileExt,
+        fileExtTypeCode,
+        fileExtType2Code,
+        fileName,
+        fileSize
     ) {
         this.post = post
         this.typeCode = typeCode
