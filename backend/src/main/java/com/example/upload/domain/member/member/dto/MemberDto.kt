@@ -9,7 +9,7 @@ class MemberDto(
     val profileImgUrl: String
 ) {
     constructor(member: Member) : this(
-        id = member.id!!,
+        id = member.id,
         nickname = member.nickname,
         profileImgUrl = member.profileImgUrlOrDefaultUrl
     )

@@ -15,10 +15,10 @@ class CommentDto(
 ) {
 
     constructor(comment: Comment) : this(
-        id = comment.id!!,
+        id = comment.id,
         content = comment.content,
-        postId = comment.post.id!!,
-        authorId = comment.author.id!!,
+        postId = comment.post.id,
+        authorId = comment.author.id,
         authorName = comment.author.nickname,
         createdTime = comment.createdDate,
         modifiedTime = comment.modifiedDate

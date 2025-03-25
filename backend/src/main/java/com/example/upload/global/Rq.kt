@@ -27,7 +27,7 @@ class Rq(
     fun setLogin(actor: Member) {
         // 유저 정보 생성
 
-        val user: UserDetails = SecurityUser(actor.id!!, actor.username, "", actor.nickname, actor.authorities)
+        val user: UserDetails = SecurityUser(actor.id, actor.username, "", actor.nickname, actor.authorities)
 
         // 인증 정보 저장소
         SecurityContextHolder.getContext().authentication =
@@ -85,7 +85,7 @@ class Rq(
     }
 
     fun getRealActor(actor: Member): Member {
-        return memberService.findById(actor.id!!).get()
+        return memberService.findById(actor.id).get()
     }
 
     fun removeCookie(name: String?) {

@@ -14,11 +14,11 @@ open class PostDto(
     val listed: Boolean
 ) {
     constructor(post: Post) : this(
-        id = post.id!!,
+        id = post.id,
         createdDate = post.createdDate,
         modifiedDate = post.modifiedDate,
         title = post.title,
-        authorId = post.author.id!!,
+        authorId = post.author.id,
         authorName = post.author.nickname,
         published = post.published,
         listed = post.listed
