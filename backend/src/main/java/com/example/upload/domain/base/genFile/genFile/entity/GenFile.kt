@@ -20,7 +20,7 @@ abstract class GenFile(
 ) : BaseTime() {
 
     val filePath: String
-        get() = AppConfig.getGenFileDirPath() + "/" + getModelName() + "/" + getTypeCodeAsStr() + "/" + fileDateDir + "/" + fileName
+        get() = AppConfig.getGenFileDirPath() + "/" + modelName + "/" + getTypeCodeAsStr() + "/" + fileDateDir + "/" + fileName
 
     override fun equals(other: Any?): Boolean {
         if (id != null) return super.equals(other);
@@ -37,14 +37,14 @@ abstract class GenFile(
     }
 
     private val ownerModelName
-        get() = this.getModelName().replace("GenFile", "")
+        get() = this.modelName.replace("GenFile", "")
 
 
     val downloadUrl: String
         get() = AppConfig.getSiteBackUrl() + "/" + ownerModelName + "/genFile/download/" + getOwnerModelId() + "/" + fileName;
 
     val publicUrl: String
-        get() = AppConfig.getSiteBackUrl() + "/gen/" + getModelName() + "/" + getTypeCodeAsStr() + "/" + fileDateDir + "/" + fileName;
+        get() = AppConfig.getSiteBackUrl() + "/gen/" + modelName + "/" + getTypeCodeAsStr() + "/" + fileDateDir + "/" + fileName;
 
     protected abstract fun getOwnerModelId(): Long
     protected abstract fun getTypeCodeAsStr(): String

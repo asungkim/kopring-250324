@@ -200,7 +200,7 @@ class Post() : BaseTime() {
     }
 
     val latestComment: Comment
-        get() = comments.maxByOrNull { it.id } ?: throw ServiceException("404-2", "존재하지 않는 댓글입니다.")
+        get() = comments.maxByOrNull { it.id!! } ?: throw ServiceException("404-2", "존재하지 않는 댓글입니다.")
 
     fun getHandleAuthority(actor: Member): Boolean {
         if (actor.isAdmin) return true
