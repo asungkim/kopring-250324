@@ -9,7 +9,10 @@ import com.example.upload.global.entity.BaseTime;
 import com.example.upload.global.exception.ServiceException;
 import com.example.upload.standard.util.Ut;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.*;
 import java.util.stream.Collectors;
