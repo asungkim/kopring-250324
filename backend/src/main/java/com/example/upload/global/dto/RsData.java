@@ -14,9 +14,9 @@ public class RsData<T> {
     public static final RsData<Empty> OK = new RsData<>("200-1", "OK", new Empty());
 
     @NonNull
-    private String code;
+    public String code; // TODO: 추후 접근제어자 변경
     @NonNull
-    private String msg;
+    public String msg; // TODO: 추후 접근제어자 변경
     @NonNull
     private T data;
 
