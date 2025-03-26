@@ -23,7 +23,10 @@ class CustomAuthenticationSuccessHandler(
         val session: HttpSession = request.session
 
         var redirectUrl = session.getAttribute("redirectUrl") as String
-        redirectUrl.let { redirectUrl = "http://localhost:3000" }
+
+        if (redirectUrl.isBlank()) {
+            redirectUrl = "http://localhost:3000"
+        }
 
         session.removeAttribute("redirectUrl")
 
