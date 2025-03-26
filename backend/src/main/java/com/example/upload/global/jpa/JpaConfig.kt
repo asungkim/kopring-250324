@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class JpaConfig {
-
+class JpaConfig(
     @PersistenceContext
-    private EntityManager entityManager;
+    private var entityManager: EntityManager
+) {
 
     @Bean
-    public JPAQueryFactory jpaQueryFactory() {
-        return new JPAQueryFactory(entityManager);
+    fun jpaQueryFactory(): JPAQueryFactory {
+        return JPAQueryFactory(entityManager)
     }
 }
