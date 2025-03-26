@@ -31,11 +31,11 @@ class PostService(
         )
     }
 
-    fun getItems(): List<Post> {
+    fun getItems(): List<Post?> {
         return postRepository.findAll()
     }
 
-    fun getItem(id: Long): Optional<Post> {
+    fun getItem(id: Long): Optional<Post?> {
         return postRepository.findById(id)
     }
 
@@ -65,8 +65,9 @@ class PostService(
         postRepository.flush()
     }
 
-    val latestItem: Optional<Post>
-        get() = postRepository.findTopByOrderByIdDesc()
+    fun getLatestItem(): Optional<Post> {
+        return postRepository.findTopByOrderByIdDesc()
+    }
 
     fun getItems(postListParamDto: PostListParamDto): Page<Post> {
         val pageable: Pageable =
@@ -80,7 +81,7 @@ class PostService(
         return postRepository.findByParam(postListParamDto, author, pageable)
     }
 
-    fun findTempOrMake(author: Member): RsData<Post> {
+    fun findTempOrMake(author: Member): RsData<Post?> {
         val isNew = AtomicBoolean(false)
 
         val post = postRepository.findTop1ByAuthorAndPublishedAndTitleOrderByIdDesc(
