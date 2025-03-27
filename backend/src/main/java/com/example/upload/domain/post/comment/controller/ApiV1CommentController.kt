@@ -59,7 +59,6 @@ class ApiV1CommentController(
     }
 
 
-    @JvmRecord
     data class WriteReqBody(@field:NotBlank val content: String)
 
     @Operation(summary = "댓글 작성", description = "게시글에 댓글을 작성합니다.")
@@ -78,7 +77,6 @@ class ApiV1CommentController(
     }
 
 
-    @JvmRecord
     data class CommentModifyReqBody(@field:NotBlank val content: String)
 
     @Operation(summary = "댓글 수정", description = "게시글의 댓글을 수정합니다.")

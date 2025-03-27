@@ -28,7 +28,6 @@ class ApiV1MemberController(
     private val postService: PostService
 ) {
 
-    @JvmRecord
     data class JoinReqBody(
         @field:NotBlank val username: String,
         @field:NotBlank val password: String,
@@ -57,13 +56,13 @@ class ApiV1MemberController(
         );
     }
 
-    @JvmRecord
+
     data class LoginReqBody(
         @field:NotBlank val username: String,
         @field:NotBlank val password: String,
     )
 
-    @JvmRecord
+
     data class LoginResBody(
         @field:NonNull val item: MemberDto,
         @field:NonNull val apiKey: String,
