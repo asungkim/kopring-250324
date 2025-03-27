@@ -31,11 +31,11 @@ class PostService(
         )
     }
 
-    fun getItems(): List<Post?> {
+    fun getItems(): List<Post> {
         return postRepository.findAll()
     }
 
-    fun getItem(id: Long): Optional<Post?> {
+    fun getItem(id: Long): Optional<Post> {
         return postRepository.findById(id)
     }
 
@@ -71,17 +71,17 @@ class PostService(
 
     fun getItems(postListParamDto: PostListParamDto): Page<Post> {
         val pageable: Pageable =
-            PageRequest.of(postListParamDto.page - 1, postListParamDto.pageSize, Sort.by(Sort.Direction.DESC, "id"))
+            PageRequest.of(postListParamDto.getPage() - 1, postListParamDto.getPageSize(), Sort.by(Sort.Direction.DESC, "id"))
         return postRepository.findByParam(postListParamDto, pageable)
     }
 
-    fun getMines(postListParamDto: PostListParamDto, author: Member?): Page<Post> {
+    fun getMines(postListParamDto: PostListParamDto, author: Member): Page<Post> {
         val pageable: Pageable =
-            PageRequest.of(postListParamDto.page - 1, postListParamDto.pageSize, Sort.by(Sort.Direction.DESC, "id"))
+            PageRequest.of(postListParamDto.getPage() - 1, postListParamDto.getPageSize(), Sort.by(Sort.Direction.DESC, "id"))
         return postRepository.findByParam(postListParamDto, author, pageable)
     }
 
-    fun findTempOrMake(author: Member): RsData<Post?> {
+    fun findTempOrMake(author: Member): RsData<Post> {
         val isNew = AtomicBoolean(false)
 
         val post = postRepository.findTop1ByAuthorAndPublishedAndTitleOrderByIdDesc(

@@ -119,13 +119,13 @@ public class ApiV1PostControllerTest {
                 .andExpect(jsonPath("$.data.totalPages").isNumber()); // 전체 페이지 개수
 
 
-        PostListParamDto postListParamDto = PostListParamDto.builder()
-                .page(page)
-                .pageSize(pageSize)
-                .keyword(keyword)
-                .keywordType(keywordType)
-                .listed(listed)
-                .build();
+        PostListParamDto postListParamDto = new PostListParamDto(
+                keywordType,
+                keyword,
+                listed,
+                null,
+                page,
+                pageSize);
 
         Page<Post> postPage = postService.getItems(postListParamDto);
         List<Post> posts = postPage.getContent();
@@ -163,13 +163,13 @@ public class ApiV1PostControllerTest {
                 .andExpect(jsonPath("$.data.totalPages").value(50))
                 .andExpect(jsonPath("$.data.totalItems").value(148));
 
-        PostListParamDto postListParamDto = PostListParamDto.builder()
-                .page(page)
-                .pageSize(pageSize)
-                .keyword(keyword)
-                .keywordType(keywordType)
-                .listed(listed)
-                .build();
+        PostListParamDto postListParamDto = new PostListParamDto(
+                keywordType,
+                keyword,
+                listed,
+                null,
+                page,
+                pageSize);
 
         Page<Post> postPage = postService.getItems(postListParamDto);
         List<Post> posts = postPage.getContent();
@@ -207,13 +207,13 @@ public class ApiV1PostControllerTest {
                 .andExpect(jsonPath("$.data.totalPages").value(50))
                 .andExpect(jsonPath("$.data.totalItems").value(148));
 
-        PostListParamDto postListParamDto = PostListParamDto.builder()
-                .page(page)
-                .pageSize(pageSize)
-                .keyword(keyword)
-                .keywordType(keywordType)
-                .listed(listed)
-                .build();
+        PostListParamDto postListParamDto = new PostListParamDto(
+                keywordType,
+                keyword,
+                listed,
+                null,
+                page,
+                pageSize);
 
         Page<Post> postPage = postService.getItems(postListParamDto);
 
@@ -253,12 +253,13 @@ public class ApiV1PostControllerTest {
                 .andExpect(jsonPath("$.data.totalItems").value(95));
 
 
-        PostListParamDto postListParamDto = PostListParamDto.builder()
-                .page(page)
-                .pageSize(pageSize)
-                .keyword(keyword)
-                .keywordType(keywordType)
-                .build();
+        PostListParamDto postListParamDto = new PostListParamDto(
+                keywordType,
+                keyword,
+                null,
+                null,
+                page,
+                pageSize);
 
         Page<Post> postPage = postService.getMines(postListParamDto, loginedMember);
         List<Post> posts = postPage.getContent();
